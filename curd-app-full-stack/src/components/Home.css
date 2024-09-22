@@ -1,0 +1,137 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.PostTitle {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.post-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 800px; /* Ensures content does not stretch too wide */
+}
+
+.post-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px; /* Reduced padding */
+  margin-bottom: 10px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for better separation */
+  display: flex;
+  align-items: flex-start; /* Align content to the top */
+  justify-content: space-between;
+  background-color: #9cbfe4; /* Space out title and actions */
+}
+
+.post-content {
+  flex: 1; /* Takes up the remaining space */
+  margin-right: 20px; /* Space between content and buttons */
+}
+
+.post-content h5 {
+  margin: 0 0 5px; /* Reduced margin between title and content */
+}
+
+.post-content p {
+  margin: 5px 0; /* Reduced margin between paragraphs */
+}
+
+.post-actions {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  align-items: flex-end; /* Align buttons to the right */
+}
+
+.edit-btn, .delete-btn {
+  color: white;
+  border: none;
+  padding: 5px 8px; /* Reduced padding */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  display: block; /* Block display for vertical stacking */
+  margin-bottom: 5px; /* Reduced space between buttons */
+}
+
+.edit-btn {
+  background-color: #007bff;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #e04d5c;
+}
+
+.delete-btn:hover {
+  background-color: #b90617;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .PostTitle {
+    font-size: 20px; /* Smaller font size on medium screens */
+    margin-bottom: 15px;
+  }
+
+  .post-item {
+    padding: 8px; /* Slightly reduced padding */
+    flex-direction: column; /* Stack content and actions vertically */
+  }
+
+  .post-content {
+    margin-right: 0; /* Remove right margin on smaller screens */
+    margin-bottom: 10px; /* Add margin at the bottom for spacing */
+  }
+
+  .post-actions {
+    align-items: center; /* Center-align buttons */
+    margin-top: 10px; /* Add space above the actions */
+  }
+}
+
+@media (max-width: 480px) {
+  .PostTitle {
+    font-size: 18px; /* Further reduced font size on small screens */
+    margin-bottom: 10px;
+  }
+
+  .post-item {
+    padding: 6px; /* Further reduced padding */
+  }
+
+  .post-content h5 {
+    font-size: 16px; /* Smaller font size for headings */
+  }
+
+  .post-content p {
+    font-size: 13px; /* Smaller font size for paragraphs */
+  }
+
+  .edit-btn, .delete-btn {
+    font-size: 12px; /* Smaller font size for buttons */
+    padding: 4px 6px; /* Further reduced padding */
+  }
+
+  .error-message {
+    font-size: 12px; /* Smaller font size for error messages */
+    margin-top: 8px; /* Reduced margin */
+  }
+}

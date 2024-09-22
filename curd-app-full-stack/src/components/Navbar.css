@@ -1,0 +1,89 @@
+.navbar {
+  background-color: #4941e3;
+  padding: 30px 20px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+
+.navbar-brand {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  /* Removed margin-left for better centering on smaller screens */
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap; /* Allows menu items to wrap on smaller screens */
+}
+
+.navbar-item {
+  /* Removed margin-right for better spacing on smaller screens */
+}
+
+.navbar-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 6px;
+  transition: color 0.3s, background-color 0.3s, border 0.3s;
+}
+
+.navbar-link:hover {
+  color: #f1eeee;
+  background-color: #071877;
+  border: 1px solid rgb(46, 50, 60);
+  border-radius: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 20px 15px;
+  }
+
+  .navbar-container {
+    flex-direction: column; /* Stack brand and menu vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .navbar-brand {
+    margin: 0; /* Removed margin-left */
+    text-align: center; /* Center-align brand */
+    font-size: 1.25rem; /* Slightly smaller font size */
+  }
+
+  .navbar-menu {
+    flex-direction: column; /* Stack menu items vertically */
+    gap: 10px;
+  }
+
+  .navbar-item {
+    margin: 0; /* Removed margin-right */
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 15px 10px;
+  }
+
+  .navbar-brand {
+    font-size: 1.125rem; /* Further reduced font size */
+  }
+
+  .navbar-link {
+    font-size: 0.875rem; /* Reduced font size */
+    padding: 4px; /* Reduced padding */
+  }
+}
