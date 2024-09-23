@@ -6,7 +6,10 @@ import './Home.css'; // Ensure this CSS file exists and is updated
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true); // Added loading state
+  const [loading, setLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1); // Current page
+  const postsPerPage = 4; // Number of posts per page
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -34,7 +37,25 @@ const Home = () => {
       setError('Failed to delete post. Please try again later.');
     }
   };
-  
+
+  // Pagination logic
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); // Slice posts to show current page's posts
+
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   if (loading) {
     return <p>Loading posts...</p>; // Show loading message
@@ -45,15 +66,15 @@ const Home = () => {
       <h3 className="PostTitle">All Posts</h3>
       {error && <p className="error-message">{error}</p>}
       <ul className="post-list">
-        {posts.map(post => (
+        {currentPosts.map(post => (  // Use currentPosts to display only posts for the current page
           <li key={post._id} className="post-item">
             <div className="post-content">
               <h5>Title: {post.title}</h5>
               <p>Content: {post.content}</p>
-              
-             <div className='image-container'>{post.image && <img src={post.image} alt={post.title} style={{ width: '360px', marginTop: '10px' }} />} {/* Display image if available */}
-             </div>
-               </div>
+              <div >
+                {post.image && <img src={post.image} alt={post.title} style={{ width: '360px',height:'260px', marginTop: '10px',}}className='image-container' />} {/* Display image if available */}
+              </div>
+            </div>
             <p>By: {post.author}</p>
             <div className="post-actions">
               <Link to={`/edit-post/${post._id}`} className="edit-btn">Edit</Link>
@@ -62,6 +83,17 @@ const Home = () => {
           </li>
         ))}
       </ul>
+
+      {/* Pagination controls */}
+      <div className="pagination">
+        <button onClick={prevPage} disabled={currentPage === 1} className="page-btn">
+          Previous
+        </button>
+        <span className="page-info">Page {currentPage} of {totalPages}</span>
+        <button onClick={nextPage} disabled={currentPage === totalPages} className="page-btn">
+          Next
+        </button>
+      </div>
     </div>
   );
 };
