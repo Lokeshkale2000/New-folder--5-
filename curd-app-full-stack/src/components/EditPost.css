@@ -1,92 +1,158 @@
-/* EditPost.css */
+/* Global box-sizing fix */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-.posts-manager {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+/* Container */
+.blog-post-form {
+  position: relative;
+  width: 450px;
+  max-height: max-content;
+  padding: 10px 20px;
+  background-color: #AD88C6;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-h1, h2 {
-  color: #333;
+.blog-post-form:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
 }
 
-h1 {
-  margin-bottom: 20px;
+/* Header */
+.header {
+  font-size: 28px;
+  margin-bottom: 22px;
+  text-align: center;
+  color: #000000;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
-h2 {
-  margin: 15px 0;
-}
-
+/* Form Fields */
 .form-group {
   margin-bottom: 15px;
 }
 
 label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 6px;
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
 }
 
 input[type="text"],
-textarea,
-input[type="file"] {
+input[type="file"],
+textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #FFE6E6;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 8px rgba(79, 172, 254, 0.3);
+  outline: none;
 }
 
 textarea {
   resize: vertical;
-  height: 100px;
+  min-height: 120px;
 }
 
-button {
-  background-color: #4facfe;
+/* Error messages */
+.error-message {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #ff4b4b;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Image preview */
+.image-preview {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 75%;
+  max-height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 6px 12px rgb(0, 0, 0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-preview img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 18px rgb(0, 0, 0);
+}
+
+/* Button */
+.button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+  text-transform: uppercase;
+  background: #1c00b9;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 10px 15px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
-  background-color: #00f2fe;
+
+.button:hover{
+  background-color: #3314e0;
 }
 
-.success-message {
-  color: green;
-  margin-top: 10px;
+/* Responsive */
+@media (max-width: 768px) {
+  .blog-post-form {
+    width: 90%;
+    margin: 20px auto;
+    padding: 18px;
+  }
+
+  .header {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .button {
+    font-size: 15px;
+  }
 }
 
-.error-message {
-  color: red;
-  margin-top: 10px;
-}
+@media (max-width: 480px) {
+  .blog-post-form {
+    width: 95%;
+    margin: 15px auto;
+    padding: 16px;
+  }
 
-.posts-list {
-  margin-top: 30px;
-}
+  .header {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
 
-.posts-list ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.posts-list li {
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.posts-list img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
+  .button {
+    padding: 12px;
+    font-size: 14px;
+  }
 }

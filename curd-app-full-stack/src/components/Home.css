@@ -1,3 +1,4 @@
+/* Home Container */
 .home {
   display: flex;
   flex-direction: column;
@@ -5,65 +6,79 @@
   padding: 20px;
 }
 
-.PostTitle {
+.post-title {
   margin-bottom: 20px;
   font-size: 24px;
-  color: #333;
+  color: #111111;
 }
 
 .post-list {
-  list-style-type: none;
+  display: flex; /* Flex for card-style layout */
+  flex-wrap: wrap; /* Allow cards to wrap */
+  justify-content: center; /* Center the cards */
+  gap: 50px; /* Add space between cards */
   padding: 0;
+  list-style: none;
   width: 100%;
-  max-width: 800px; /* Ensures content does not stretch too wide */
+  max-width: 1200px; /* Adjust the container width */
 }
 
 .post-item {
   border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px; /* Reduced padding */
-  margin-bottom: 10px;
-  width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for better separation */
+  border-radius: 10px;
+  padding: 10px;
+  width: 400px;
+  height: 400px;
   display: flex;
-  align-items: flex-start; /* Align content to the top */
-  justify-content: space-between;
-  background-color: #9cbfe4; /* Space out title and actions */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: space-between; /* Space out content and actions */
+  box-shadow:  2px 6px rgba(78, 101, 228, 0.05);
+  background-color:  #AD88C6;
+  overflow: hidden; /* Prevent overflow */
+  position: relative; /* For potential positioning adjustments */
+}
+.image-container{
+  width: 380px;
+  height: 180px;
 }
 
 .post-content {
-  flex: 1; /* Takes up the remaining space */
-  margin-right: 20px; /* Space between content and buttons */
+  flex: 1;
+  margin-bottom: 10px; /* Space between content and actions */
+  overflow: hidden; /* Ensure content doesn't overflow */
+  text-overflow: ellipsis; /* Handle text overflow gracefully */
 }
 
 .post-content h5 {
-  margin: 0 0 5px; /* Reduced margin between title and content */
+  font-size: 20px;
+  margin: 0 0 5px;
 }
 
 .post-content p {
-  margin: 5px 0; /* Reduced margin between paragraphs */
+  margin: 5px 0;
 }
+
+/* Update for larger image size */
 
 .post-actions {
   display: flex;
-  flex-direction: column; /* Stack buttons vertically */
-  align-items: flex-end; /* Align buttons to the right */
+  justify-content: space-between; /* Align actions horizontally */
+  gap: 10px; /* Add space between buttons */
 }
 
 .edit-btn, .delete-btn {
   color: white;
   border: none;
-  padding: 5px 8px; /* Reduced padding */
+  padding: 10px 15px; /* Larger buttons for a card style */
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
   text-align: center;
-  display: block; /* Block display for vertical stacking */
-  margin-bottom: 5px; /* Reduced space between buttons */
+  width: 100px;
 }
 
 .edit-btn {
-  background-color: #007bff;
+  background-color: #082174;
 }
 
 .edit-btn:hover {
@@ -86,52 +101,49 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .PostTitle {
-    font-size: 20px; /* Smaller font size on medium screens */
-    margin-bottom: 15px;
+  .post-list {
+    justify-content: center; /* Stack cards in center on medium screens */
   }
 
   .post-item {
-    padding: 8px; /* Slightly reduced padding */
-    flex-direction: column; /* Stack content and actions vertically */
-  }
-
-  .post-content {
-    margin-right: 0; /* Remove right margin on smaller screens */
-    margin-bottom: 10px; /* Add margin at the bottom for spacing */
+    width: 100%; /* Full-width cards on medium screens */
+    max-width: 400px;
   }
 
   .post-actions {
-    align-items: center; /* Center-align buttons */
-    margin-top: 10px; /* Add space above the actions */
+    flex-direction: row; /* Keep actions horizontal */
   }
 }
 
 @media (max-width: 480px) {
-  .PostTitle {
-    font-size: 18px; /* Further reduced font size on small screens */
-    margin-bottom: 10px;
+  .post-title {
+    font-size: 18px;
   }
 
   .post-item {
-    padding: 6px; /* Further reduced padding */
+    width: 100%; /* Full-width cards on small screens */
+    max-width: 300px;
   }
 
   .post-content h5 {
-    font-size: 16px; /* Smaller font size for headings */
+    font-size: 16px;
   }
 
   .post-content p {
-    font-size: 13px; /* Smaller font size for paragraphs */
+    font-size: 13px;
+  }
+
+  .post-content img {
+    width: 200px; /* Adjust image size for smaller screens */
+    height: 200px;
   }
 
   .edit-btn, .delete-btn {
-    font-size: 12px; /* Smaller font size for buttons */
-    padding: 4px 6px; /* Further reduced padding */
+    font-size: 12px;
+    padding: 8px;
   }
 
   .error-message {
-    font-size: 12px; /* Smaller font size for error messages */
-    margin-top: 8px; /* Reduced margin */
+    font-size: 12px;
   }
 }

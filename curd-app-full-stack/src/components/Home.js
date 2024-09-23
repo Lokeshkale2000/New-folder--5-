@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/posts');
+        const response = await axios.get('https://new-folder-5-rouge.vercel.app/api/posts');
         setPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -26,7 +26,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/api/posts/${id}`);
+      const response = await axios.delete(`https://new-folder-5-rouge.vercel.app/api/posts/${id}`);
       console.log(response.data); // Log response to ensure delete is working
       setPosts(posts.filter(post => post._id !== id));
     } catch (error) {
@@ -50,10 +50,11 @@ const Home = () => {
             <div className="post-content">
               <h5>Title: {post.title}</h5>
               <p>Content: {post.content}</p>
-              <p>By: {post.author}</p>
-              <p>At: {new Date(post.createdAt).toLocaleString()}</p>
-              {post.image && <img src={post.image} alt={post.title} style={{ width: '100px', marginTop: '10px' }} />} {/* Display image if available */}
-            </div>
+              
+             <div className='image-container'>{post.image && <img src={post.image} alt={post.title} style={{ width: '360px', marginTop: '10px' }} />} {/* Display image if available */}
+             </div>
+               </div>
+            <p>By: {post.author}</p>
             <div className="post-actions">
               <Link to={`/edit-post/${post._id}`} className="edit-btn">Edit</Link>
               <button onClick={() => handleDelete(post._id)} className="delete-btn">Delete</button>

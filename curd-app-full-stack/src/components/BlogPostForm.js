@@ -54,7 +54,7 @@ const BlogPostForm = () => {
         image: imageUrl,
       };
 
-      await axios.post("http://localhost:8080/api/posts", postData);
+      await axios.post("https://new-folder-5-rouge.vercel.app/api/posts", postData);
       setTimeout(() => navigate("/home"), 1000);
       console.log(postData); // Redirect after 2 seconds
     } catch (error) {
@@ -79,29 +79,17 @@ const BlogPostForm = () => {
             <div className="form-group">
               <label htmlFor="title">Title</label>
               <Field type="text" id="title" name="title" />
-              <ErrorMessage
-                name="title"
-                component="div"
-                className="error-message"
-              />
+             
             </div>
             <div className="form-group">
-              <label htmlFor="content">Content</label>
+              <label htmlFor="content" className="content-box">Content</label>
               <Field as="textarea" id="content" name="content" />
-              <ErrorMessage
-                name="content"
-                component="div"
-                className="error-message"
-              />
+            
             </div>
             <div className="form-group">
               <label htmlFor="author">Author</label>
               <Field type="text" id="author" name="author" />
-              <ErrorMessage
-                name="author"
-                component="div"
-                className="error-message"
-              />
+           
             </div>
             <div className="form-group">
               <label htmlFor="image">Image</label>
@@ -113,11 +101,7 @@ const BlogPostForm = () => {
                   setFieldValue("image", event.currentTarget.files[0]);
                 }}
               />
-              <ErrorMessage
-                name="image"
-                component="div"
-                className="error-message"
-              />
+              
             </div>
             <button
               type="submit"
@@ -126,6 +110,11 @@ const BlogPostForm = () => {
             >
               {loading ? "Submitting..." : "Submit"}
             </button>
+            <ErrorMessage
+                name="image"
+                component="div"
+                className="error-message"
+              />
           </Form>
         )}
       </Formik>
