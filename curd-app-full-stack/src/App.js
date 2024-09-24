@@ -4,7 +4,7 @@ import './App.css'; // Corrected import path
 import BlogPostForm from './components/BlogPostForm';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import EditPost from './components/EditPost'; // Import for the new edit page
+import EditPost from './components/EditPost'; 
 
 function App() {
   return (
@@ -12,9 +12,9 @@ function App() {
       <Navbar />
       <div className="app-content">
         <Routes>
-          <Route path="/home" element={<Home />} /> {/* Set the homepage to "/" */}
-          <Route path="/BlogPostForm" element={<BlogPostForm />} /> {/* Add post page */}
-          <Route path="/edit-post/:id" element={<EditPost />} /> {/* Edit post with ID */}
+          <Route path="/home" element={<Home />} /> 
+          <Route path="/BlogPostForm" element={<BlogPostForm />} /> 
+          <Route path="/edit-post/:id" element={<EditPost />} /> 
         </Routes>
       </div>
     </Router>

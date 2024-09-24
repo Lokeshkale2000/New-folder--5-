@@ -29,9 +29,9 @@ const EditPost = () => {
             title: post.title,
             content: post.content,
             author: post.author,
-            image: null, // Don't set the image here
+            image: null,
           });
-          setImagePreview(post.image); // Set the image preview
+          setImagePreview(post.image); 
           setError('');
         } catch (error) {
           console.error('Error fetching post:', error);
@@ -50,10 +50,10 @@ const EditPost = () => {
   const handleImageUpload = async (file) => {
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'images'); // Replace with your Cloudinary preset
+    formData.append('upload_preset', 'images'); 
 
     const uploadResponse = await axios.post(
-      'https://api.cloudinary.com/v1_1/dobtzmaui/image/upload', // Replace with your Cloudinary cloud name
+      'https://api.cloudinary.com/v1_1/dobtzmaui/image/upload', 
       formData
     );
     return uploadResponse.data.secure_url;
@@ -82,11 +82,11 @@ const EditPost = () => {
     try {
       let imageUrl;
 
-      // If a new image is uploaded, handle the upload
+     
       if (values.image) {
         imageUrl = await handleImageUpload(values.image);
       } else {
-        imageUrl = imagePreview; // Use existing image URL
+        imageUrl = imagePreview; 
       }
 
       // Update existing post
@@ -94,7 +94,7 @@ const EditPost = () => {
         title: values.title,
         content: values.content,
         author: values.author,
-        image: imageUrl, // Use the uploaded image URL here
+        image: imageUrl,
       }, {
         headers: { 'Content-Type': 'application/json' },
       });

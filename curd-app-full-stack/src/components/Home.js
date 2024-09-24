@@ -8,8 +8,8 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const [currentPage, setCurrentPage] = useState(1); // Current page
-  const postsPerPage = 4; // Number of posts per page
+  const [currentPage, setCurrentPage] = useState(1); 
+  const postsPerPage = 4; 
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -20,7 +20,7 @@ const Home = () => {
         console.error('Error fetching posts:', error);
         setError('Failed to fetch posts. Please try again later.');
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false); 
       }
     };
 
@@ -30,7 +30,7 @@ const Home = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(`https://new-folder-5-rouge.vercel.app/api/posts/${id}`);
-      console.log(response.data); // Log response to ensure delete is working
+      console.log(response.data); 
       setPosts(posts.filter(post => post._id !== id));
     } catch (error) {
       console.error('Error deleting post:', error);
@@ -38,11 +38,10 @@ const Home = () => {
     }
   };
 
-  // Pagination logic
+  
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); // Slice posts to show current page's posts
-
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); 
   const totalPages = Math.ceil(posts.length / postsPerPage);
 
   const nextPage = () => {
@@ -58,7 +57,7 @@ const Home = () => {
   };
 
   if (loading) {
-    return <p>Loading posts...</p>; // Show loading message
+    return <p>Loading posts...</p>; 
   }
 
   return (
@@ -66,7 +65,7 @@ const Home = () => {
       <h3 className="PostTitle">All Posts</h3>
       {error && <p className="error-message">{error}</p>}
       <ul className="post-list">
-        {currentPosts.map(post => (  // Use currentPosts to display only posts for the current page
+        {currentPosts.map(post => (  
           <li key={post._id} className="post-item">
             <div className="post-content">
               <h5>Title: {post.title}</h5>
@@ -84,7 +83,7 @@ const Home = () => {
         ))}
       </ul>
 
-      {/* Pagination controls */}
+     
       <div className="pagination">
         <button onClick={prevPage} disabled={currentPage === 1} className="page-btn">
           Previous

@@ -9,7 +9,7 @@ const BlogPostForm = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Validation schema using Yup
+  
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("Title is required"),
     content: Yup.string().required("Content is required"),
@@ -27,17 +27,17 @@ const BlogPostForm = () => {
         }
       )
       .test("fileSize", "File size must be less than 6 MB", (value) => {
-        return value && value.size <= 6 * 1024 * 1024; // 6 MB in bytes
+        return value && value.size <= 6 * 1024 * 1024; 
       }),
   });
 
   const handleImageUpload = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "images"); // Replace with your Cloudinary preset
+    formData.append("upload_preset", "images"); 
 
     const uploadResponse = await axios.post(
-      "https://api.cloudinary.com/v1_1/dobtzmaui/image/upload", // Replace with your Cloudinary cloud name
+      "https://api.cloudinary.com/v1_1/dobtzmaui/image/upload", 
       formData
     );
     return uploadResponse.data.secure_url;
@@ -59,7 +59,7 @@ const BlogPostForm = () => {
       console.log(postData); // Redirect after 2 seconds
     } catch (error) {
       console.error("Failed to add post:", error);
-      setFieldError("image", "Failed to upload image. Please try again."); // Set form error
+      setFieldError("image", "Failed to upload image. Please try again."); 
     } finally {
       setLoading(false);
       setSubmitting(false);

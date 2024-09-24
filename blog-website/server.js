@@ -7,28 +7,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Mongoose schema and model
+
 const postSchema = new mongoose.Schema({
   title: String,
   content: String,
   author: String,
   image: String,
-   // Store image URL
+ 
 });
 
 const Post = mongoose.model('Post', postSchema);
 
-// API to create a post with direct image URL
+
 app.post('/api/posts', async (req, res) => {
   try {
-    const { title, content, author, image } = req.body; // Accept image URL directly
-
-    // Create a new post with the provided data
+    const { title, content, author, image } = req.body; 
     const newPost = new Post({ title, content, author, image });
     await newPost.save();
 
@@ -39,7 +37,7 @@ app.post('/api/posts', async (req, res) => {
   }
 });
 
-// API to get all posts
+
 app.get('/api/posts', async (req, res) => {
   try {
     const posts = await Post.find();
@@ -51,7 +49,7 @@ app.get('/api/posts', async (req, res) => {
   }
 });
 
-// API to get a specific post by ID
+
 app.get('/api/posts/:id', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -63,10 +61,9 @@ app.get('/api/posts/:id', async (req, res) => {
   }
 });
 
-// API to update a post with a new image URL
 app.put('/api/posts/:id', async (req, res) => {
   try {
-    const { title, content, author, image } = req.body; // Accept new image URL
+    const { title, content, author, image } = req.body;
     console.log('Received data:', { title, content, author, image });
 
     const updatedPost = await Post.findByIdAndUpdate(
@@ -83,7 +80,7 @@ app.put('/api/posts/:id', async (req, res) => {
   }
 });
 
-// API to delete a post by ID
+
 app.delete('/api/posts/:id', async (req, res) => {
   try {
     const deletedPost = await Post.findByIdAndDelete(req.params.id);
@@ -101,6 +98,6 @@ app.delete('/api/posts/:id', async (req, res) => {
 
 
 
-// Start the server
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
